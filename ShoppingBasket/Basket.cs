@@ -26,25 +26,10 @@ namespace ShoppingBasket
 
         public bool AskForNewItem()
         {
-            Item item = new Item();
+            items.Add(GetNewItem());
 
-            Console.WriteLine("Please enter the item name:");
-            item.Name = Console.ReadLine();
-
-            Console.WriteLine("Please enter the item price:");
-            while (!float.TryParse(Console.ReadLine(), out item.Price))
-            {
-                Console.WriteLine("Something went wrong. Please re-enter the item price:");
-            }
-
-            items.Add(item);
-
-            Console.WriteLine("Would you like to add another item? (Y/N)");
-            var temp = Console.ReadLine();
-            if (temp.Equals("Y"))
-                return true;
-            else return false;
-        }
+            return IsThereANewItem();
+        }        
 
         public void PrintBasket()
         {
@@ -58,6 +43,44 @@ namespace ShoppingBasket
             }
 
             Console.WriteLine("Total price: " + total);
+        }
+
+        private Item GetNewItem()
+        {
+            Item item = new Item();
+
+            Console.WriteLine("Please enter the item name:");
+            item.Name = GetItemName();
+
+            Console.WriteLine("Please enter the item price:");
+            item.Price = GetItemPrice();
+
+            return item;
+        }
+
+        private string GetItemName()
+        {
+            return Console.ReadLine();
+        }
+
+        private float GetItemPrice()
+        {
+            float parsedPrice = 0;
+
+            while (!float.TryParse(Console.ReadLine(), out parsedPrice))
+            {
+                Console.WriteLine("Something went wrong. Please re-enter the item price:");
+            }
+            return parsedPrice;
+        }
+
+        private bool IsThereANewItem()
+        {
+            Console.WriteLine("Would you like to add another item? (Y/N)");
+            var temp = Console.ReadLine();
+            if (temp.Equals("Y"))
+                return true;
+            else return false;
         }
     }
 }
