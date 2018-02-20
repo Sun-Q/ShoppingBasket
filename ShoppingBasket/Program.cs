@@ -13,45 +13,18 @@ namespace ShoppingBasket
 
         static void Main(string[] args)
         {
-            Greeting();
-
-            while (AddItem())
-            {
-            }
-
-            PrintList();
-        }
-
-        static void Greeting()
-        {
             Console.WriteLine("Please enter your name:");
-            var name = Console.ReadLine();
-            Console.WriteLine("Hello, " + name);
-        }
 
-        static Boolean AddItem()
-        {
-            Console.WriteLine("Please enter the item name:");
-            items.Add(Console.ReadLine());
+            Basket myBasket = new Basket(Console.ReadLine());
 
-            Console.WriteLine("Please enter the item price:");
-            prices.Add(int.Parse(Console.ReadLine()));
+            bool hasMoreItem = true;
 
-            Console.WriteLine("Would you like to add another item? (Y/N)");
-            var temp = Console.ReadLine();
-            if (temp.Equals("Y"))
-                return true;
-            else return false;
-        }
-
-        static void PrintList()
-        {
-            for (int i = 0; i < items.Count; i++)
+            while (hasMoreItem)
             {
-                Console.WriteLine("Item Name: " + items[i] + ", Price: " + prices[i]);
+                hasMoreItem = myBasket.AskForNewItem();
             }
 
-            Console.WriteLine("Total price: " + prices.Sum());
+            myBasket.PrintBasket();
         }
 
     }
