@@ -8,9 +8,6 @@ namespace ShoppingBasket
 {
     class Program
     {
-        static List<string> items = new List<string>();
-        static List<int> prices = new List<int>();
-
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter your name:");
