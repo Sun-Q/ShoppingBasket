@@ -8,7 +8,13 @@ namespace ShoppingBasket
 {
     public class Item
     {
-        public String Name;
-        public float Price;
+        public String Name { get; set; }
+        public float Price { get; set; }
+
+        public Item(string name, float price)
+        {
+            Name = name;
+            Price = price;
+        }
     }
 }

@@ -54,15 +54,13 @@ namespace ShoppingBasket
 
         private Item GetNewItem()
         {
-            Item item = new Item();
-
             Console.WriteLine("Please enter the item name:");
-            item.Name = GetItemName();
+            var name = GetItemName();
 
             Console.WriteLine("Please enter the item price:");
-            item.Price = GetItemPrice();
+            var price = GetItemPrice();
 
-            return item;
+            return new Item(name, price);
         }
 
         private string GetItemName()
