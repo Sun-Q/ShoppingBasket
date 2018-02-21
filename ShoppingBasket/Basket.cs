@@ -84,10 +84,44 @@ namespace ShoppingBasket
         private bool IsThereANewItem()
         {
             Console.WriteLine("Would you like to add another item? (Y/N)");
-            var temp = Console.ReadLine();
-            if (temp.Equals("Y"))
+
+            bool parsedInput;
+            while (!ParseUserConfirmation(Console.ReadLine(), out parsedInput))
+            {
+                Console.WriteLine("Something went wrong. Please re-enter the item price:");
+            }
+
+            return parsedInput;
+        }
+
+        /// <summary>
+        /// Checks and parses the message (case-insensitive) to true or false.
+        /// 
+        /// True: Y, Yes
+        /// False: N, No
+        /// </summary>
+        /// <param name="input">input string</param>
+        /// <param name="result">false if failed parsing</param>
+        /// <returns>Whether parse succeed</returns>
+        private bool ParseUserConfirmation(string input, out bool result)
+        {
+            input = input.ToLower();
+
+            if (input.Equals("y") || input.Equals("yes"))
+            {
+                result = true;
                 return true;
-            else return false;
+            }
+            else if (input.Equals("n") || input.Equals("n"))
+            {
+                result = false;
+                return true;
+            }
+            else
+            {
+                result = false;
+                return false;
+            }
         }
     }
 }
