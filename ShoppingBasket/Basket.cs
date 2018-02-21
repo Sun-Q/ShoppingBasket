@@ -26,10 +26,17 @@ namespace ShoppingBasket
 
         public bool AskForNewItem()
         {
-            items.Add(GetNewItem());
+            AddItem(GetNewItem());
 
             return IsThereANewItem();
-        }        
+        }
+
+        public void AddItem(Item item)
+        {
+            items.Add(item);
+
+            Console.WriteLine("{0}: £{1} is added.", item.Name, item.Price);
+        }
 
         public void PrintBasket()
         {
