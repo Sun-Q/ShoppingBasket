@@ -17,12 +17,8 @@ namespace ShoppingBasket
 
             Basket myBasket = new Basket(Console.ReadLine());
 
-            bool hasMoreItem = true;
-
-            while (hasMoreItem)
-            {
-                hasMoreItem = myBasket.AskForNewItem();
-            }
+            while (myBasket.AskForNewItem())
+            { }
 
             myBasket.PrintBasket();
         }
