@@ -56,12 +56,17 @@ namespace ShoppingBasket
 
         private string GetItemName()
         {
-            return "Testing";
+            return Console.ReadLine();
         }
 
         private float GetItemPrice()
         {
-            float parsedPrice = 0;
+            float parsedPrice; 
+
+            while (!float.TryParse(Console.ReadLine(), out parsedPrice))
+            {
+                Console.WriteLine("Something went wrong. Please re-enter the item price:");
+            }
 
             return parsedPrice;
         }
