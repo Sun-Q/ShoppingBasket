@@ -21,7 +21,7 @@ namespace ShoppingBasket
 
         public void Greeting()
         {
-            Console.WriteLine("opps.");
+            Console.WriteLine("Hello, " + Username);
         }
 
         public bool AskForNewItem()
@@ -40,6 +40,12 @@ namespace ShoppingBasket
         {
             float total = 0;
 
+            foreach (Item item in items)
+            {
+                Console.WriteLine("Item Name: " + item.Name + ", Price " + item.Price);
+
+                total += item.Price;
+            }
             Console.WriteLine("Total price: " + total);
         }
 
