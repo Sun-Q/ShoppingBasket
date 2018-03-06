@@ -33,6 +33,8 @@ namespace ShoppingBasket
 
         public void AddItem(Item item)
         {
+            items.Add(item);
+
             Console.WriteLine("{0}: £{1} is added.", item.Name, item.Price);
         }
 
@@ -70,9 +72,34 @@ namespace ShoppingBasket
         {
             Console.WriteLine("Would you like to add another item? (Y/N)");
 
-            bool parsedInput = false;
+            bool parsedInput;
+            while (!ParseUserConfirmation(Console.ReadLine(), out parsedInput))
+            {
+                Console.WriteLine("Something went wrong. Please re-enter the item price:");
+            }
 
             return parsedInput;
+        }
+
+        private bool ParseUserConfirmation(string input, out bool result)
+        {
+            input = input.ToLower();
+
+            if (input.Equals("y") || input.Equals("yes"))
+            {
+                result = true;
+                return true;
+            }
+            else if (input.Equals("n") || input.Equals("n"))
+            {
+                result = false;
+                return true;
+            }
+            else
+            {
+                result = false;
+                return false;
+            }
         }
 
     }
